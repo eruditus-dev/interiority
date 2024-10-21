@@ -57,7 +57,11 @@
         <h1 class="w-full lg:w-auto">
       {%- endif %}
           <a href="{{ routes.root_url }}" class="flex items-center self-stretch leading-[3rem] justify-center flex-grow w-full h-full font-heading font-heading-weight md:leading-[4rem] lg:inline lg:w-auto lg:h-auto lg:leading-none">
-            {{ shop.name }}
+            {% if section.settings.logo %}
+              <img src="{{ section.settings.logo | image_url: width: 120 }}" alt="{{ shop.name }}" class="h-10">
+            {% else %}
+              {{ shop.name }}
+            {% endif %}
           </a>
       {%- if request.page_type == 'index' -%}
         </h1>
@@ -87,7 +91,7 @@
       </form>
 
       {%- if shop.customer_accounts_enabled -%}
-        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="flex items-center justify-center w-8 h-8">
+        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif %}" class="flex items-center justify-center w-8 h-8">
           {% render 'icon-account' %}
           <span class="sr-only">
             {%- liquid
@@ -165,6 +169,12 @@
       "default": true,
       "label": "Enable sticky header",
       "info": "Header shows on the screen as customers scroll up."
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Logo displayed in the header."
     }
   ]
 }
