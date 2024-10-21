@@ -58,7 +58,7 @@
       {%- endif %}
           <a href="{{ routes.root_url }}" class="flex items-center self-stretch leading-[3rem] justify-center flex-grow w-full h-full font-heading font-heading-weight md:leading-[4rem] lg:inline lg:w-auto lg:h-auto lg:leading-none">
             {% if section.settings.logo %}
-              <img src="{{ section.settings.logo | image_url: width: 120 }}" alt="{{ shop.name }}" class="h-10">
+              <img src="{{ section.settings.logo | image_url: width: 180 }}" alt="{{ shop.name }}" class="h-10">
             {% else %}
               {{ shop.name }}
             {% endif %}
