@@ -37,6 +37,9 @@
         "text",
         "button"
       ],
+      "custom_css": [
+        "p {font-size: 26px;}"
+      ],
       "settings": {
         "image": "shopify://shop_images/224604872_xl_normal_none.jpg",
         "full_page_height_enable": true
