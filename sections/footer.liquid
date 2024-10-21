@@ -1,105 +1,21 @@
-{%- liquid
-  assign container_class = 'border-none'
--%}
-
-<footer
-  role="contentinfo"
-  class="{{ container_class }} min-h-[25rem] w-full grid grid-cols-1 gap-8 bg-contrast px-6 py-8 text-primary md:grid-cols-4 md:px-8 lg:px-12"
->
-  {%- for block in section.blocks -%}
-    {%- case block.type -%}
-      {%- when 'text_block' -%}
-        <div class="col-span-1">
-          <h3 class="font-heading text-lead">{{ block.settings.heading | escape }}</h3>
-          <p>{{ block.settings.content | escape }}</p>
-        </div>
-      {%- when 'image_block' -%}
-        <div class="col-span-1">
-          <h3 class="font-heading text-lead">{{ block.settings.heading | escape }}</h3>
-          <img
-            src="{{ block.settings.image | img_url: 'medium' }}"
-            alt="{{ block.settings.heading | escape }}"
-            class="w-full h-auto"
-          >
-        </div>
-      {%- when 'code_block' -%}
-        <div class="col-span-1">
-          <h3 class="font-heading text-lead">{{ block.settings.heading | escape }}</h3>
-          <pre class="bg-gray-200 p-4 rounded"><code>{{ block.settings.code | escape }}</code></pre>
-        </div>
-    {%- endcase -%}
-  {%- endfor -%}
-
-  <div class="col-span-1 self-end pt-14 opacity-50 md:col-span-4">
-    &copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }}
-    {{ powered_by_link }}
+<footer class="bg-contrast text-primary px-6 py-8">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div>
+      <h3 class="font-heading text-lead">Columna 1</h3>
+      <p>Contenido de texto aquí.</p>
+    </div>
+    <div>
+      <h3 class="font-heading text-lead">Columna 2</h3>
+      <p>Contenido de texto aquí.</p>
+    </div>
+    <div>
+      <h3 class="font-heading text-lead">Columna 3</h3>
+      <p>Contenido de texto aquí.</p>
+    </div>
+    <div>
+      <h3 class="font-heading text-lead">Columna 4</h3>
+      <p>Contenido de texto aquí.</p>
+    </div>
   </div>
+  <div class="text-center pt-8">&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }}</div>
 </footer>
-
-{% schema %}
-{
-  "name": "Footer",
-  "settings": [],
-  "blocks": [
-    {
-      "type": "text_block",
-      "name": "Text Block",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "Heading",
-          "label": "Heading"
-        },
-        {
-          "type": "textarea",
-          "id": "content",
-          "default": "Your content here.",
-          "label": "Content"
-        }
-      ]
-    },
-    {
-      "type": "image_block",
-      "name": "Image Block",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "Heading",
-          "label": "Heading"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        }
-      ]
-    },
-    {
-      "type": "code_block",
-      "name": "Code Block",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "Heading",
-          "label": "Heading"
-        },
-        {
-          "type": "textarea",
-          "id": "code",
-          "default": "Your code here.",
-          "label": "Code"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Default",
-      "category": "Footer"
-    }
-  ]
-}
-{% endschema %}
