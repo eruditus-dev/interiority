@@ -56,12 +56,14 @@
     display: flex; /* Hacer que las columnas se alineen en fila */
     justify-content: space-between; /* Espacio entre columnas */
     margin-top: 20px; /* Espacio entre imagen y columnas */
+    flex-wrap: wrap; /* Permitir que las columnas se envuelvan si es necesario */
   }
 
   .footer-column {
     flex: 1; /* Cada columna ocupa el mismo espacio */
     padding: 10px; /* Espacio interno en las columnas */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    min-width: 200px; /* Ancho mínimo para columnas */
   }
 
   .footer-column h4 {
