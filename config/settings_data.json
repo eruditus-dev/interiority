@@ -18,7 +18,8 @@
         ],
         "settings": {
           "menu": "main-menu",
-          "enable_sticky_header": true
+          "enable_sticky_header": true,
+          "logo": "shopify://shop_images/pagina_menu_logo_Mesa_de_trabajo_1.png"
         }
       },
       "footer": {
