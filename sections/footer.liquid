@@ -1,162 +1,105 @@
-<div class="footer-section">
-  <div class="footer-image">
-    {%- if section.settings.footer_image != blank -%}
-      <img
-        src="{{ section.settings.footer_image | image_url: width: 1000 }}"
-        alt="{{ section.settings.footer_image.alt | escape }}"
-      >
-    {%- endif -%}
+{%- liquid
+  assign container_class = 'border-none'
+-%}
+
+<footer
+  role="contentinfo"
+  class="{{ container_class }} min-h-[25rem] w-full grid grid-cols-1 gap-8 bg-contrast px-6 py-8 text-primary md:grid-cols-4 md:px-8 lg:px-12"
+>
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'text_block' -%}
+        <div class="col-span-1">
+          <h3 class="font-heading text-lead">{{ block.settings.heading | escape }}</h3>
+          <p>{{ block.settings.content | escape }}</p>
+        </div>
+      {%- when 'image_block' -%}
+        <div class="col-span-1">
+          <h3 class="font-heading text-lead">{{ block.settings.heading | escape }}</h3>
+          <img
+            src="{{ block.settings.image | img_url: 'medium' }}"
+            alt="{{ block.settings.heading | escape }}"
+            class="w-full h-auto"
+          >
+        </div>
+      {%- when 'code_block' -%}
+        <div class="col-span-1">
+          <h3 class="font-heading text-lead">{{ block.settings.heading | escape }}</h3>
+          <pre class="bg-gray-200 p-4 rounded"><code>{{ block.settings.code | escape }}</code></pre>
+        </div>
+    {%- endcase -%}
+  {%- endfor -%}
+
+  <div class="col-span-1 self-end pt-14 opacity-50 md:col-span-4">
+    &copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }}
+    {{ powered_by_link }}
   </div>
-
-  <div class="footer-text">
-    <h2>{{ section.settings.footer_title | escape }}</h2>
-    <p>{{ section.settings.footer_description | escape }}</p>
-  </div>
-
-  <div class="footer-code">
-    <h3>Código HTML Personalizado:</h3>
-    <div class="custom-html">
-      {{ section.settings.custom_html }}
-    </div>
-  </div>
-
-  <div class="footer-columns">
-    <div class="footer-column">
-      <h4>{{ section.settings.column_1_title }}</h4>
-      <p>{{ section.settings.column_1_content }}</p>
-    </div>
-    <div class="footer-column">
-      <h4>{{ section.settings.column_2_title }}</h4>
-      <p>{{ section.settings.column_2_content }}</p>
-    </div>
-    <div class="footer-column">
-      <h4>{{ section.settings.column_3_title }}</h4>
-      <p>{{ section.settings.column_3_content }}</p>
-    </div>
-    <div class="footer-column">
-      <h4>{{ section.settings.column_4_title }}</h4>
-      <p>{{ section.settings.column_4_content }}</p>
-    </div>
-  </div>
-</div>
-
-<style>
-  .footer-section {
-    padding: 20px;
-    background-color: #f4f4f4; /* Color de fondo del footer */
-    text-align: center; /* Centrar texto */
-  }
-
-  .footer-image img {
-    max-width: 100%; /* Mantener la imagen dentro del contenedor */
-    height: auto; /* Ajustar la altura automáticamente */
-  }
-
-  .footer-columns {
-    display: flex; /* Hacer que las columnas se alineen en fila */
-    justify-content: space-between; /* Espacio entre columnas */
-    margin-top: 20px; /* Espacio entre imagen y columnas */
-    flex-wrap: wrap; /* Permitir que las columnas se envuelvan si es necesario */
-  }
-
-  .footer-column {
-    flex: 1; /* Cada columna ocupa el mismo espacio */
-    padding: 10px; /* Espacio interno en las columnas */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    min-width: 200px; /* Ancho mínimo para columnas */
-  }
-
-  .footer-column h4 {
-    font-size: 1.2rem; /* Tamaño del título de las columnas */
-  }
-
-  .footer-column p {
-    font-size: 0.9rem; /* Tamaño del texto del contenido */
-  }
-</style>
+</footer>
 
 {% schema %}
 {
-  "name": "Footer Section",
-  "settings": [
+  "name": "Footer",
+  "settings": [],
+  "blocks": [
     {
-      "type": "image_picker",
-      "id": "footer_image",
-      "label": "Imagen del Footer"
+      "type": "text_block",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Heading",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "default": "Your content here.",
+          "label": "Content"
+        }
+      ]
     },
     {
-      "type": "text",
-      "id": "footer_title",
-      "label": "Título del Footer",
-      "default": "Título del Footer"
+      "type": "image_block",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Heading",
+          "label": "Heading"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
     },
     {
-      "type": "textarea",
-      "id": "footer_description",
-      "label": "Descripción del Footer",
-      "default": "Descripción del Footer"
-    },
-    {
-      "type": "text",
-      "id": "column_1_title",
-      "label": "Título de la Columna 1",
-      "default": "Columna 1"
-    },
-    {
-      "type": "textarea",
-      "id": "column_1_content",
-      "label": "Contenido de la Columna 1",
-      "default": "Contenido de la Columna 1"
-    },
-    {
-      "type": "text",
-      "id": "column_2_title",
-      "label": "Título de la Columna 2",
-      "default": "Columna 2"
-    },
-    {
-      "type": "textarea",
-      "id": "column_2_content",
-      "label": "Contenido de la Columna 2",
-      "default": "Contenido de la Columna 2"
-    },
-    {
-      "type": "text",
-      "id": "column_3_title",
-      "label": "Título de la Columna 3",
-      "default": "Columna 3"
-    },
-    {
-      "type": "textarea",
-      "id": "column_3_content",
-      "label": "Contenido de la Columna 3",
-      "default": "Contenido de la Columna 3"
-    },
-    {
-      "type": "text",
-      "id": "column_4_title",
-      "label": "Título de la Columna 4",
-      "default": "Columna 4"
-    },
-    {
-      "type": "textarea",
-      "id": "column_4_content",
-      "label": "Contenido de la Columna 4",
-      "default": "Contenido de la Columna 4"
-    },
-    {
-      "type": "textarea",
-      "id": "custom_html",
-      "label": "Código HTML Personalizado",
-      "default": "<p>Tu código aquí.</p>"
+      "type": "code_block",
+      "name": "Code Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Heading",
+          "label": "Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "code",
+          "default": "Your code here.",
+          "label": "Code"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Footer Section",
+      "name": "Default",
       "category": "Footer"
     }
   ]
 }
 {% endschema %}
-{% section 'footer-section' %}
