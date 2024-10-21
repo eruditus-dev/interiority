@@ -15,59 +15,20 @@
 <div id="Banner-{{ section.id }}" class="relative flex w-full flex-col justify-end {{ banner_class }}">
   <div class="pointer-events-none absolute inset-0 -z-10 grid flex-grow auto-cols-fr grid-flow-col content-stretch overflow-clip">
     {%- if section.settings.image != blank -%}
-      <div>
-        {%- liquid
-          assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
-          if section.settings.image_2 != blank
-            assign sizes = '50vw'
-          else
-            assign sizes = '100vw'
-          endif
-        -%}
-        {{
-          section.settings.image
-          | image_url: width: 1500
-          | image_tag:
-            loading: loading,
-            preload: preload,
-            width: section.settings.image.width,
-            height: image_height,
-            class: 'block object-cover w-full h-full',
-            sizes: sizes,
-            widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
-            alt: section.settings.image.alt
-          | escape
-        }}
-      </div>
+      <div
+        class="parallax-image"
+        style="background-image: url('{{ section.settings.image | image_url: width: 1500 }}'); background-attachment: fixed; background-size: cover; background-position: center;"
+      ></div>
     {%- elsif section.settings.image_2 == blank -%}
       <div>
         {{ 'lifestyle-2' | placeholder_svg_tag: 'w-full h-full object-cover fill-primary/20' }}
       </div>
     {%- endif -%}
     {%- if section.settings.image_2 != blank -%}
-      <div class="hidden md:block">
-        {%- liquid
-          assign image_height_2 = section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio
-          if section.settings.image != blank
-            assign sizes = '50vw'
-          else
-            assign sizes = '100vw'
-          endif
-        -%}
-        {{
-          section.settings.image_2
-          | image_url: width: 1500
-          | image_tag:
-            loading: loading,
-            width: section.settings.image_2.width,
-            height: image_height_2,
-            class: 'block object-cover w-full h-full',
-            sizes: sizes,
-            widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
-            alt: section.settings.image_2.alt
-          | escape
-        }}
-      </div>
+      <div
+        class="hidden md:block parallax-image"
+        style="background-image: url('{{ section.settings.image_2 | image_url: width: 1500 }}'); background-attachment: fixed; background-size: cover; background-position: center;"
+      ></div>
     {%- endif -%}
   </div>
   <div class="flex flex-col items-baseline justify-between gap-4 bg-gradient-to-t from-contrast/60 to-contrast/0 px-6 py-8 text-primary sm:px-8 md:px-18">
