@@ -91,7 +91,27 @@
     </main>
 
     {% section 'footer' %}
-
+    <footer class="bg-contrast text-primary px-6 py-8">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div>
+          <h3 class="font-heading text-lead">Columna 1</h3>
+          <p>Contenido de texto aquí.</p>
+        </div>
+        <div>
+          <h3 class="font-heading text-lead">Columna 2</h3>
+          <p>Contenido de texto aquí.</p>
+        </div>
+        <div>
+          <h3 class="font-heading text-lead">Columna 3</h3>
+          <p>Contenido de texto aquí.</p>
+        </div>
+        <div>
+          <h3 class="font-heading text-lead">Columna 4</h3>
+          <p>Contenido de texto aquí.</p>
+        </div>
+      </div>
+      <div class="text-center pt-8">&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }}</div>
+    </footer>
     <ul hidden>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
