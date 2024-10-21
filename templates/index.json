@@ -38,7 +38,8 @@
         "button"
       ],
       "custom_css": [
-        "div {max-height: 600px;}"
+        "div {max-height: 600px;}",
+        ".font-body-weight-bold {font-size: 30px;}"
       ],
       "settings": {
         "image": "shopify://shop_images/224604872_xl_normal_none.jpg",
