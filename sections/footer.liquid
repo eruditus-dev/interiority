@@ -1,10 +1,7 @@
 <div class="footer-section">
   <div class="footer-image">
     {%- if section.settings.footer_image != blank -%}
-      <img
-        src="{{ section.settings.footer_image | image_url: width: 1000 }}"
-        alt="{{ section.settings.footer_image.alt | escape }}"
-      >
+      <img src="{{ section.settings.footer_image | image_url: width: 1000 }}" alt="{{ section.settings.footer_image.alt | escape }}" />
     {%- endif -%}
   </div>
 
@@ -41,119 +38,25 @@
 </div>
 
 <style>
-  .footer-section {
-    padding: 20px;
-    background-color: #f4f4f4; /* Color de fondo del footer */
-    text-align: center; /* Centrar texto */
-  }
-
-  .footer-image img {
-    max-width: 100%; /* Mantener la imagen dentro del contenedor */
-    height: auto; /* Ajustar la altura automáticamente */
-  }
-
-  .footer-columns {
-    display: flex; /* Hacer que las columnas se alineen en fila */
-    justify-content: space-between; /* Espacio entre columnas */
-    margin-top: 20px; /* Espacio entre imagen y columnas */
-  }
-
-  .footer-column {
-    flex: 1; /* Cada columna ocupa el mismo espacio */
-    padding: 10px; /* Espacio interno en las columnas */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  }
-
-  .footer-column h4 {
-    font-size: 1.2rem; /* Tamaño del título de las columnas */
-  }
-
-  .footer-column p {
-    font-size: 0.9rem; /* Tamaño del texto del contenido */
-  }
-</style>
-
-{% schema %}
-{
-  "name": "Footer Section",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "footer_image",
-      "label": "Imagen del Footer"
-    },
-    {
-      "type": "text",
-      "id": "footer_title",
-      "label": "Título del Footer",
-      "default": "Título del Footer"
-    },
-    {
-      "type": "textarea",
-      "id": "footer_description",
-      "label": "Descripción del Footer",
-      "default": "Descripción del Footer"
-    },
-    {
-      "type": "text",
-      "id": "column_1_title",
-      "label": "Título de la Columna 1",
-      "default": "Columna 1"
-    },
-    {
-      "type": "textarea",
-      "id": "column_1_content",
-      "label": "Contenido de la Columna 1",
-      "default": "Contenido de la Columna 1"
-    },
-    {
-      "type": "text",
-      "id": "column_2_title",
-      "label": "Título de la Columna 2",
-      "default": "Columna 2"
-    },
-    {
-      "type": "textarea",
-      "id": "column_2_content",
-      "label": "Contenido de la Columna 2",
-      "default": "Contenido de la Columna 2"
-    },
-    {
-      "type": "text",
-      "id": "column_3_title",
-      "label": "Título de la Columna 3",
-      "default": "Columna 3"
-    },
-    {
-      "type": "textarea",
-      "id": "column_3_content",
-      "label": "Contenido de la Columna 3",
-      "default": "Contenido de la Columna 3"
-    },
-    {
-      "type": "text",
-      "id": "column_4_title",
-      "label": "Título de la Columna 4",
-      "default": "Columna 4"
-    },
-    {
-      "type": "textarea",
-      "id": "column_4_content",
-      "label": "Contenido de la Columna 4",
-      "default": "Contenido de la Columna 4"
-    },
-    {
-      "type": "textarea",
-      "id": "custom_html",
-      "label": "Código HTML Personalizado",
-      "default": "<p>Tu código aquí.</p>"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Footer Section",
-      "category": "Footer"
-    }
-  ]
+.footer-section {
+  padding: 20px;
+  background-color: #f4f4f4; /* Color de fondo del footer */
+  text-align: center; /* Centrar texto */
 }
-{% endschema %}
+
+.footer-image img {
+  max-width: 100%; /* Mantener la imagen dentro del contenedor */
+  height: auto; /* Ajustar la altura automáticamente */
+}
+
+.footer-columns {
+  display: flex; /* Hacer que las columnas se alineen en fila */
+  justify-content: space-between; /* Espacio entre columnas */
+  margin-top: 20px; /* Espacio entre imagen y columnas */
+  flex-wrap: wrap; /* Permitir que las columnas se envuelvan si es necesario */
+}
+
+.footer-column {
+  flex: 1; /* Cada columna ocupa el mismo espacio */
+  padding: 10px; /* Espacio interno en las columnas */
+  box-shadow: 0 2
