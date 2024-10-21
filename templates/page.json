@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
       }
     },
@@ -25,12 +26,14 @@
         },
         "text_D4r34c": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "Give customers details about the banner image(s) or content on the template."
           }
         },
         "buttons_HRPrAM": {
           "type": "buttons",
+          "disabled": true,
           "settings": {
             "button_label_1": "Button label",
             "button_link_1": ""
@@ -43,7 +46,7 @@
         "buttons_HRPrAM"
       ],
       "custom_css": [
-        "div {max-height: 400px;}"
+        "div {max-height: 300px;}"
       ],
       "settings": {
         "image": "{{ page.metafields.custom.image_banner.value }}",
